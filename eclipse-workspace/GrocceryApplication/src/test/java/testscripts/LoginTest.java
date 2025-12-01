@@ -2,6 +2,7 @@ package testscripts;
 
 import java.io.IOException;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -21,6 +22,8 @@ public class LoginTest extends LiveBase{
 			loginPage.enterUserNameOnUserNamefield(usernamevalue);
 			loginPage.enterPasswordOnPasswordField(passwordvalue);
 			loginPage.SigninClick();
+			boolean dashboardDisplayed=loginPage.isDashboardDisplayed();
+			Assert.assertTrue(dashboardDisplayed, "user was unable to login with valid credentials.");
 		}
 
 		@Test
@@ -31,6 +34,9 @@ public class LoginTest extends LiveBase{
 			loginPage.enterUserNameOnUserNamefield(usernamevalue);
 			loginPage.enterPasswordOnPasswordField(passwordvalue);
 			loginPage.SigninClick();
+			String expected="7rmart supermarke";
+			String actual=loginPage.getTheTitle();
+			Assert.assertEquals(actual, expected,"user was able to login with invalid password.");
 		}
 
 		@Test
