@@ -6,8 +6,26 @@
       <class name="testscripts.LoginTest">
         <methods>
           <include name="verifyWhetherUserIsAbleToLoginWithValidCredential"/>
+          <include name="verifyWhetherUserIsAbleToLoginWithInValidUserNameandInValidPassword"/>
+          <include name="initializeBrowser"/>
+          <include name="verifyWhetherUserIsAbleToLoginWithValidUserNameandInvalidPassword"/>
+          <include name="verifyWhetherUserIsAbleToLoginWithInValidUserNameandValidPassword"/>
         </methods>
       </class> <!-- testscripts.LoginTest -->
+      <class name="testscripts.HomeTest">
+        <methods>
+          <include name="verifyWhetherUserIsAbleToLoginWithValidCredential"/>
+          <include name="initializeBrowser"/>
+        </methods>
+      </class> <!-- testscripts.HomeTest -->
+      <class name="testscripts.AdminListTest">
+        <methods>
+          <include name="verifyWhetherAdminIsAbleToSearchTheNewlyAddedUser"/>
+          <include name="initializeBrowser"/>
+          <include name="verifyWhetherUserIsAbleToLoginWithValidCredential"/>
+          <include name="verifyWhetherAdminIsAbleToResetTheUsersList"/>
+        </methods>
+      </class> <!-- testscripts.AdminListTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -14,7 +14,7 @@ public class LoginTest extends LiveBase{
 	
 	 
 	
-		@Test
+		@Test(priority = 1,description = "Verify User can login with valid credentials",groups = {"smoke"})
 		public void verifyWhetherUserIsAbleToLoginWithValidCredential() throws IOException {
 			String usernamevalue = ExcelUtility.getStringData(0, 0, "LoginPage");
 			String passwordvalue = ExcelUtility.getStringData(0, 1, "LoginPage");
@@ -49,7 +49,7 @@ public class LoginTest extends LiveBase{
 			loginPage.SigninClick();
 		}
 
-		@Test
+		@Test(priority = 4,description = "Verify user is able to login with invalid credentials",groups = {"smoke"})
 		public void verifyWhetherUserIsAbleToLoginWithInValidUserNameandInValidPassword() throws IOException {
 			String usernamevalue = ExcelUtility.getStringData(3, 0, "LoginPage");
 			String passwordvalue = ExcelUtility.getStringData(3, 1, "LoginPage");
