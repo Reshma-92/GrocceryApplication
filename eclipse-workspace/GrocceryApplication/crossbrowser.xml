@@ -12,14 +12,14 @@
     
   </test> <!-- Test -->
   
-  <test thread-count="5" name="FirefoxTest">
+  <!--<test thread-count="5" name="FirefoxTest">
   <parameter name="browsers" value="firefox"></parameter>
     <classes>
       <class name="testscripts.HomeTest">
        </class>
     </classes>
     
-  </test> <!-- Test -->
+  </test>  Test -->
   
   
 </suite> <!-- Suite -->

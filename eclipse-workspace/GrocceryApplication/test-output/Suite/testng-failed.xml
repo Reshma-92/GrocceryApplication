@@ -11,6 +11,7 @@
         <methods>
           <include name="verifyWhetherUserIsAbleToLoginWithValidCredential"/>
           <include name="initializeBrowser"/>
+          <include name="driverQuit"/>
         </methods>
       </class> <!-- testscripts.HomeTest -->
     </classes>

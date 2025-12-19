@@ -18,17 +18,22 @@ public class LoginPage {
 		@FindBy(xpath = "//button[@type='submit']")WebElement signInBtn;
 		@FindBy(xpath="//p[text()='Dashboard']") WebElement dashboard;
 		@FindBy(xpath="//b[text()='7rmart supermarket']") WebElement title;
+		@FindBy(xpath="//p[text()='Sign in to start your session']") WebElement loginBoxMessage;
+		@FindBy(id="login-form") WebElement loginForm;
 
-		public void enterUserNameOnUserNamefield(String usernamevalue) {
+		public LoginPage enterUserNameOnUserNamefield(String usernamevalue) {
 			userName.sendKeys( usernamevalue);
+			return this;
 		}
 
-		public void enterPasswordOnPasswordField(String passwordvalue) {
+		public LoginPage enterPasswordOnPasswordField(String passwordvalue) {
 			password.sendKeys(passwordvalue);
+			return this;
 		}
 
-		public void SigninClick() {
+		public HomePage SigninClick() {
 			signInBtn.click();
+			return new HomePage(driver);
 		}
 		
 		public boolean isDashboardDisplayed() {
@@ -38,6 +43,16 @@ public class LoginPage {
 		public String getTheTitle() {
 			return title.getText();
 		}
+		
+		public String getTheLoginBoxMessage() {
+			return loginBoxMessage.getText();
+		}
+		
+		public boolean isLoginFormDisplayed() {
+			return loginForm.isDisplayed();
+		}
+		
+
 
 	}
 

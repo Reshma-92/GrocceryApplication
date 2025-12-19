@@ -29,20 +29,25 @@ public class HomePage {
 
     
     
-   public void clickOnProfileIcon() {
+   public HomePage clickOnProfileIcon() {
         admin.click();
+        return this;
     }
    
-   public void clickOnListAdmin() {
-	   listadmin.click();
-   }
-
-   public void clickOnLogout() {
+   public LoginPage clickOnLogout() {
        logout.click();
+       return new LoginPage(driver);
    }
    
-   public void clickOnMoreInfoManageNewsLink() {
+   public AdminListPage clickOnListAdmin() {
+	   listadmin.click();
+	   return new AdminListPage(driver);
+   }
+
+   
+   public ManageNewsPage clickOnMoreInfoManageNewsLink() {
 		moreInfoManageNewsLink.click();
+		return new ManageNewsPage(driver);
 	}
 
 }

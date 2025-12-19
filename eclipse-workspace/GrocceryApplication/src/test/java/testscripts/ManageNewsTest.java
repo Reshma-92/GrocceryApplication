@@ -12,22 +12,21 @@ import pages.ManageNewsPage;
 import utility.ExcelUtility;
 
 public class ManageNewsTest extends LiveBase{
+	HomePage home;
+	ManageNewsPage managenews;
 	@Test
 	public void verifyWhetherNewNewsCanBeCreated() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(0, 0, "LoginPage");
 		String passwordvalue = ExcelUtility.getStringData(0, 1, "LoginPage");
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.enterUserNameOnUserNamefield(usernamevalue);
-		loginPage.enterPasswordOnPasswordField(passwordvalue);
-		loginPage.SigninClick();
-		HomePage homepage = new HomePage(driver);
-		homepage.clickOnMoreInfoManageNewsLink();
-		ManageNewsPage newsPage = new ManageNewsPage(driver);
-		newsPage.clickOnNewButton();
+		loginPage.enterUserNameOnUserNamefield(usernamevalue).enterPasswordOnPasswordField(passwordvalue);
+		home = loginPage.SigninClick();
+	
+		managenews = home.clickOnMoreInfoManageNewsLink();
+		managenews.clickOnNewButton();
 		String news = ExcelUtility.getStringData(0, 0, "ManageNewsPage");
-		newsPage.enterTheNewsInformation(news);
-		newsPage.clickOnSaveButton();
-		boolean newsCreatedAlert = newsPage.newsCreatedAlert();
+		managenews.enterTheNewsInformation(news).clickOnSaveButton();
+		boolean newsCreatedAlert = managenews.newsCreatedAlert();
 		Assert.assertTrue(newsCreatedAlert, "unable to create new news information.");
 
 	}
@@ -37,18 +36,14 @@ public class ManageNewsTest extends LiveBase{
 		String usernamevalue = ExcelUtility.getStringData(0, 0, "LoginPage");
 		String passwordvalue = ExcelUtility.getStringData(0, 1, "LoginPage");
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.enterUserNameOnUserNamefield(usernamevalue);
-		loginPage.enterPasswordOnPasswordField(passwordvalue);
-		loginPage.SigninClick();
-		HomePage homepage = new HomePage(driver);
-		homepage.clickOnMoreInfoManageNewsLink();
-		ManageNewsPage newsPage = new ManageNewsPage(driver);
-		newsPage.clickOnSearchButton();
+		loginPage.enterUserNameOnUserNamefield(usernamevalue).enterPasswordOnPasswordField(passwordvalue);
+		home = loginPage.SigninClick();
+		managenews = home.clickOnMoreInfoManageNewsLink();
+		managenews.clickOnSearchButton();
 		String news = ExcelUtility.getStringData(0, 0, "ManageNewsPage");
-		newsPage.enterTheNewsToSearch(news);
-		newsPage.searchButtonClickToSearchNews();
+		managenews.enterTheNewsToSearch(news).searchButtonClickToSearchNews();
 		String expected = ExcelUtility.getStringData(0, 0, "ManageNewsPage");
-		String actual = newsPage.newsDisplayedList();
+		String actual = managenews.newsDisplayedList();
 		Assert.assertEquals(actual, expected, "Unable to search the news.");
 	}
 
@@ -57,14 +52,13 @@ public class ManageNewsTest extends LiveBase{
 		String usernamevalue = ExcelUtility.getStringData(0, 0, "LoginPage");
 		String passwordvalue = ExcelUtility.getStringData(0, 1, "LoginPage");
 		LoginPage loginPage = new LoginPage(driver);
-		loginPage.enterUserNameOnUserNamefield(usernamevalue);
-		loginPage.enterPasswordOnPasswordField(passwordvalue);
-		loginPage.SigninClick();
-		HomePage homepage = new HomePage(driver);
-		homepage.clickOnMoreInfoManageNewsLink();
-		ManageNewsPage newsPage = new ManageNewsPage(driver);
-		newsPage.resetButtonClick();
-		boolean newsResetListDisplayed = newsPage.isNewsResetListDisplayed();
+		loginPage.enterUserNameOnUserNamefield(usernamevalue).enterPasswordOnPasswordField(passwordvalue);
+		home = loginPage.SigninClick();
+		
+		managenews = home.clickOnMoreInfoManageNewsLink();
+	
+		managenews.resetButtonClick();
+		boolean newsResetListDisplayed = managenews.isNewsResetListDisplayed();
 		Assert.assertTrue(newsResetListDisplayed, "News list is not reset.");
 	}
 }

@@ -24,32 +24,39 @@ public WebDriver driver;
 	@FindBy(xpath="//a[contains(text(),' Reset')]") WebElement resetLink;
 	@FindBy(xpath="//table[@class=\"table table-bordered table-hover table-sm\"]") WebElement resetDisplayedTab;
 	
-	public void clickOnNewButton() {
+	public ManageNewsPage clickOnNewButton() {
 		newButton.click();
+		return this;
 	}
 	
-	public void enterTheNewsInformation(String news) {
+	public ManageNewsPage enterTheNewsInformation(String news) {
 		newsTextBox.sendKeys(news);
+		return this;
 	}
 	
-	public void clickOnSaveButton() {
+	public ManageNewsPage clickOnSaveButton() {
 		saveButton.click();
+		return this;
 	}
 	
-	public void clickOnSearchButton() {
+	public ManageNewsPage clickOnSearchButton() {
 		searchButton.click();
+		return this;
 	}
 
-	public void enterTheNewsToSearch(String news) {
+	public ManageNewsPage enterTheNewsToSearch(String news) {
 		newsTitlePlaceHolder.sendKeys(news);
+		return this;
 	}
 	
-	public void searchButtonClickToSearchNews() {
+	public ManageNewsPage searchButtonClickToSearchNews() {
 		buttonToSearchNews.click();
+		return this;
 	}
 	
-	public void resetButtonClick() {
+	public ManageNewsPage resetButtonClick() {
 		resetLink.click();
+		return this;
 	}
 	public boolean newsCreatedAlert() {
 		return newsCreatedSuccessAlert.isDisplayed();

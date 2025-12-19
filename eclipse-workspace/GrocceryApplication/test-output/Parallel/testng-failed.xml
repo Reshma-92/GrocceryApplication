@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="classes" name="Failed suite [Parallel]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" parallel="classes" name="Test1(failed)">
+    <parameter name="browsers" value="chrome"/>
+    <classes>
+      <class name="testscripts.AdminListTest">
+        <methods>
+          <include name="initializeBrowser"/>
+          <include name="verifyWhetherAdminIsAbleToSearchTheNewlyAddedUser"/>
+          <include name="verifyWhetherUserIsAbleToLoginWithValidCredential"/>
+          <include name="driverQuit"/>
+          <include name="verifyWhetherAdminIsAbleToResetTheUsersList"/>
+        </methods>
+      </class> <!-- testscripts.AdminListTest -->
+    </classes>
+  </test> <!-- Test1(failed) -->
+  <test thread-count="5" parallel="classes" name="Test2(failed)">
+    <parameter name="browsers" value="firefox"/>
+    <classes>
+      <class name="testscripts.HomeTest">
+        <methods>
+          <include name="initializeBrowser"/>
+          <include name="driverQuit"/>
+          <include name="verifyWhetherUserIsAbleToLogOutSuccessfully"/>
+        </methods>
+      </class> <!-- testscripts.HomeTest -->
+    </classes>
+  </test> <!-- Test2(failed) -->
+</suite> <!-- Failed suite [Parallel] -->
