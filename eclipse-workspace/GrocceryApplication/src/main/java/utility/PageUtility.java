@@ -13,6 +13,11 @@ public class PageUtility {
 		object.selectByValue(value);
 
 	}
+	
+	public void selectDropDownWithVisibleText(WebElement element, String visibleText) {
+		Select object = new Select(element);
+		object.selectByVisibleText(visibleText);
+	}
 
 	public void clickOnElement(WebElement element) {
 	    element.click();

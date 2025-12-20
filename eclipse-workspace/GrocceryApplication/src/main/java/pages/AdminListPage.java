@@ -9,13 +9,16 @@ import org.openqa.selenium.support.PageFactory;
 
 import org.openqa.selenium.support.ui.Select;
 
+import utility.PageUtility;
+
 
 public class AdminListPage {
+	PageUtility pageUtility = new PageUtility();
     public WebDriver driver;
 
     public AdminListPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(driver, this);     //constructor-initialize page object class and pass webdriver instance to that page.
     }
 
     @FindBy(xpath="//a[contains(text(),' New')]")
@@ -47,8 +50,10 @@ public class AdminListPage {
 	}
 	
 	public AdminListPage selectTheUserType(String userTypeValue) {
-		Select select=new Select(userType);
-		select.selectByVisibleText(userTypeValue);
+	pageUtility.selectDropDownWithVisibleText(userType, userTypeValue);
+		
+		//Select select=new Select(userType);
+		//select.selectByVisibleText(userTypeValue);
 		return this;
 	}
 	public AdminListPage saveButtonClick() {

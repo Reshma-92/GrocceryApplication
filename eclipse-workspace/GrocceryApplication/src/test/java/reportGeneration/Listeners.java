@@ -20,14 +20,14 @@ public class Listeners implements ITestListener {
             new ThreadLocal<>();
 
     @Override
-    public void onTestStart(ITestResult result) {
+    public void onTestStart(ITestResult result) {     // test begins - create new test entry in the extent report.
         ExtentTest test =
                 extent.createTest(result.getMethod().getMethodName());
         extentTest.set(test);
     }
 
     @Override
-    public void onTestSuccess(ITestResult result) {
+    public void onTestSuccess(ITestResult result) {            // test passes - logs pass status
         if (extentTest.get() != null) {
             extentTest.get().log(Status.PASS, "Test Passed");
         }
@@ -50,7 +50,7 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onFinish(ITestContext context) {
-        extent.flush();
+        extent.flush();                     //writes all logs to html report
         extentTest.remove();
     }
 }
