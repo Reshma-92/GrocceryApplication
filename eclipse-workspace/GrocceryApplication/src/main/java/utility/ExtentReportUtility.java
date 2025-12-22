@@ -13,14 +13,14 @@ public class ExtentReportUtility {
 
         if (extent == null) {
 
-            String reportPath = System.getProperty("user.dir")
+            String reportPath = System.getProperty("user.dir")    //Gets the project root directory
                     + File.separator + "extent-reports"
                     + File.separator + "extent-report.html";
 
             ExtentSparkReporter reporter =
                     new ExtentSparkReporter(reportPath);
 
-            reporter.config().setReportName("7RMartSupermarketProject");
+            reporter.config().setReportName("7RMartSupermarketProject");   //Sets the name shown inside the report
 
             extent = new ExtentReports();
             extent.attachReporter(reporter);

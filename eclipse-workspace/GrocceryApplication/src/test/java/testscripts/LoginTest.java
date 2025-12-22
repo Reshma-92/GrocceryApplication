@@ -28,7 +28,7 @@ public class LoginTest extends LiveBase{
 			Assert.assertTrue(dashboardDisplayed, "user was unable to login with valid credentials.");
 		}
 
-		@Test
+		@Test(priority = 2, description = "verify user login with valid username and invalid passwords.")
 		public void verifyWhetherUserIsAbleToLoginWithValidUserNameandInvalidPassword() throws IOException {
 			String usernamevalue = ExcelUtility.getStringData(1, 0, "LoginPage");
 			String passwordvalue = ExcelUtility.getStringData(1, 1, "LoginPage");
@@ -39,7 +39,7 @@ public class LoginTest extends LiveBase{
 			Assert.assertEquals(actual, expected,"user was able to login with invalid password.");
 		}
 
-		@Test
+		@Test(priority = 3, description = "verify user login with invalid username and valid password.")
 		public void verifyWhetherUserIsAbleToLoginWithInValidUserNameandValidPassword() throws IOException {
 			String usernamevalue = ExcelUtility.getStringData(2, 0, "LoginPage");
 			String passwordvalue = ExcelUtility.getStringData(2, 1, "LoginPage");

@@ -9,48 +9,96 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
+import automationCore.LiveBase;
 import utility.ExtentReportUtility;
 
-public class Listeners implements ITestListener {
+public class Listeners extends LiveBase implements ITestListener { // ITestListener interface :listener for test running.
+																// methods in this interface are overridden in the below
+																// methods.
 
-    private static ExtentReports extent =
-            ExtentReportUtility.createExtentReports();
+	ExtentTest test;
+	ExtentReports extent = ExtentReportUtility.createExtentReports();
+	ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 
-    private static ThreadLocal<ExtentTest> extentTest =
-            new ThreadLocal<>();
+	public void onTestStart(ITestResult result) {// executes before each test execution and fetch the method name and 
+		                                              //  attached to the report
 
-    @Override
-    public void onTestStart(ITestResult result) {     // test begins - create new test entry in the extent report.
-        ExtentTest test =
-                extent.createTest(result.getMethod().getMethodName());
-        extentTest.set(test);
-    }
+		ITestListener.super.onTestStart(result);
+		test = extent.createTest(result.getMethod().getMethodName());   
+		extentTest.set(test);
 
-    @Override
-    public void onTestSuccess(ITestResult result) {            // test passes - logs pass status
-        if (extentTest.get() != null) {
-            extentTest.get().log(Status.PASS, "Test Passed");
-        }
-    }
+	}
 
-    @Override
-    public void onTestFailure(ITestResult result) {
-        if (extentTest.get() != null) {
-            extentTest.get().log(Status.FAIL, "Test Failed");
-            extentTest.get().fail(result.getThrowable());
-        }
-    }
+	public void onTestSuccess(ITestResult result) {       //invokes automatically when the testcase passes
 
-    @Override
-    public void onTestSkipped(ITestResult result) {
-        if (extentTest.get() != null) {
-            extentTest.get().log(Status.SKIP, "Test Skipped");
-        }
-    }
+		ITestListener.super.onTestSuccess(result);
+		extentTest.get().log(Status.PASS, "Test Passed");
 
-    @Override
-    public void onFinish(ITestContext context) {
-        extent.flush();                     //writes all logs to html report
-        extentTest.remove();
-    }
+	}
+
+	public void onTestFailure(ITestResult result) {   //invokes automatically when testcase is failed, contains illegal arguments
+		                                                 // exception & print stack trace method to get the reason why our execution is failed.
+
+		ITestListener.super.onTestFailure(result);
+
+		extentTest.get().log(Status.FAIL, "Test Failed");
+		extentTest.get().fail(result.getThrowable());
+
+		WebDriver driver = null;
+
+		String testMethodName = result.getMethod().getMethodName();
+
+		try {
+
+			driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver")
+					.get(result.getInstance());
+		} catch (IllegalArgumentException e) {
+
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+
+			e.printStackTrace();
+		} catch (SecurityException e) {
+
+			e.printStackTrace();
+		}
+
+		try {
+			driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver")
+					.get(result.getInstance());
+		} catch (Exception e) {
+		}
+	}
+
+	public void onTestSkipped(ITestResult result) {
+
+		ITestListener.super.onTestSkipped(result);
+		extentTest.get().log(Status.SKIP, "Test Skipped");
+		String testMethodName = result.getMethod().getMethodName();
+
+	}
+
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+
+		ITestListener.super.onTestFailedButWithinSuccessPercentage(result);
+	}
+
+	public void onTestFailedWithTimeout(ITestResult result) {
+
+		ITestListener.super.onTestFailedWithTimeout(result);
+	}
+
+	public void onStart(ITestContext context) {
+
+		ITestListener.super.onStart(context);
+	}
+
+	public void onFinish(ITestContext context) {
+
+		ITestListener.super.onFinish(context);
+		extent.flush(); // To have the above mentioned steps to work, flush method needs to be invoked.
+	}
 }

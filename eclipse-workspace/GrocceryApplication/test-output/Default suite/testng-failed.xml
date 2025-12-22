@@ -3,29 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testscripts.LoginTest">
+      <class name="testscripts.ManageNewsTest">
         <methods>
-          <include name="verifyWhetherUserIsAbleToLoginWithValidCredential"/>
-          <include name="verifyWhetherUserIsAbleToLoginWithInValidUserNameandInValidPassword"/>
+          <include name="verifyWhetherNewsCanBeSearched"/>
           <include name="initializeBrowser"/>
-          <include name="verifyWhetherUserIsAbleToLoginWithValidUserNameandInvalidPassword"/>
-          <include name="verifyWhetherUserIsAbleToLoginWithInValidUserNameandValidPassword"/>
+          <include name="driverQuit"/>
         </methods>
-      </class> <!-- testscripts.LoginTest -->
-      <class name="testscripts.HomeTest">
-        <methods>
-          <include name="verifyWhetherUserIsAbleToLoginWithValidCredential"/>
-          <include name="initializeBrowser"/>
-        </methods>
-      </class> <!-- testscripts.HomeTest -->
-      <class name="testscripts.AdminListTest">
-        <methods>
-          <include name="verifyWhetherAdminIsAbleToSearchTheNewlyAddedUser"/>
-          <include name="initializeBrowser"/>
-          <include name="verifyWhetherUserIsAbleToLoginWithValidCredential"/>
-          <include name="verifyWhetherAdminIsAbleToResetTheUsersList"/>
-        </methods>
-      </class> <!-- testscripts.AdminListTest -->
+      </class> <!-- testscripts.ManageNewsTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

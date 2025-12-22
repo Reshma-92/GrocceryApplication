@@ -16,7 +16,7 @@ public class AdminListTest extends LiveBase {
 	HomePage home;
 	AdminListPage adminuser;
 
-	@Test
+	@Test(priority = 1, description = "verify whether admin can add new user.")
 	public void verifyWhetherUserIsAbleToLoginWithValidCredential() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(0, 0, "LoginPage");
 		String passwordvalue = ExcelUtility.getStringData(0, 1, "LoginPage");
@@ -38,7 +38,7 @@ public class AdminListTest extends LiveBase {
 
 	}
 
-	@Test
+	@Test(priority = 2, description = "verify whether admin can search the newly added user.")
 	public void verifyWhetherAdminIsAbleToSearchTheNewlyAddedUser() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(0, 0, "LoginPage");
 		String passwordvalue = ExcelUtility.getStringData(0, 1, "LoginPage");
@@ -53,7 +53,7 @@ public class AdminListTest extends LiveBase {
 		Assert.assertTrue(adminUsersResultTabDisplayed, "user not able to search for the user.");
 	}
 
-	@Test
+	@Test(priority = 3, description = "verify whether admin can reset the users list.")
 	public void verifyWhetherAdminIsAbleToResetTheUsersList() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(0, 0, "LoginPage");
 		String passwordvalue = ExcelUtility.getStringData(0, 1, "LoginPage");

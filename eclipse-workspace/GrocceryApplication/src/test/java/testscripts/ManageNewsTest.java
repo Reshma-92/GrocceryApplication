@@ -14,7 +14,7 @@ import utility.ExcelUtility;
 public class ManageNewsTest extends LiveBase{
 	HomePage home;
 	ManageNewsPage managenews;
-	@Test
+	@Test(priority = 1, description = "verify whether new news can be created.")
 	public void verifyWhetherNewNewsCanBeCreated() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(0, 0, "LoginPage");
 		String passwordvalue = ExcelUtility.getStringData(0, 1, "LoginPage");
@@ -31,7 +31,7 @@ public class ManageNewsTest extends LiveBase{
 
 	}
 
-	@Test
+	@Test(priority = 2, description = "verify whether news can be searched.")
 	public void verifyWhetherNewsCanBeSearched() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(0, 0, "LoginPage");
 		String passwordvalue = ExcelUtility.getStringData(0, 1, "LoginPage");
@@ -47,7 +47,7 @@ public class ManageNewsTest extends LiveBase{
 		Assert.assertEquals(actual, expected, "Unable to search the news.");
 	}
 
-	@Test
+	@Test(priority = 3, description = "verify whether news list can be reset.")
 	public void verifyWhetherTheListCanBeReset() throws IOException {
 		String usernamevalue = ExcelUtility.getStringData(0, 0, "LoginPage");
 		String passwordvalue = ExcelUtility.getStringData(0, 1, "LoginPage");
